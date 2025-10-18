@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>aula1.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="aula-1-python-para-ci%C3%AAncia-de-dados">Aula 1: Python para Ciência de Dados</h1>
+<h2 id="%F0%9F%93%8B-%C3%ADndice">📋 Índice</h2>
+<ol>
+<li><a href="#1-introdu%C3%A7%C3%A3o-%C3%A0-linguagem-e-motiva%C3%A7%C3%A3o">Introdução à Linguagem e Motivação</a></li>
+<li><a href="#2-arquitetura-interna-do-python">Arquitetura Interna do Python</a></li>
+<li><a href="#3-fundamentos-da-linguagem">Fundamentos da Linguagem</a></li>
+<li><a href="#4-ambiente-e-ecossistema">Ambiente e Ecossistema</a></li>
+<li><a href="#5-python-para-ci%C3%AAncia-de-dados">Python para Ciência de Dados</a></li>
+<li><a href="#6-encerramento-e-pr%C3%B3ximos-passos">Encerramento e Próximos Passos</a></li>
+</ol>
+<hr>
+<h2 id="1-introdu%C3%A7%C3%A3o-%C3%A0-linguagem-e-motiva%C3%A7%C3%A3o">1. Introdução à Linguagem e Motivação</h2>
+<h3 id="11-o-que-%C3%A9-python">1.1 O que é Python?</h3>
+<p><strong>Python</strong> é uma linguagem de programação de alto nível, interpretada e de propósito geral, criada por Guido van Rossum em 1991.</p>
+<h4 id="filosofia-python-the-zen-of-python">Filosofia Python (The Zen of Python)</h4>
+<ul>
+<li><strong>Legibilidade conta</strong>: código claro é melhor que código obscuro</li>
+<li><strong>Simples é melhor que complexo</strong></li>
+<li><strong>Explícito é melhor que implícito</strong></li>
+<li><strong>Deve haver uma — e preferencialmente só uma — maneira óbvia de fazer algo</strong></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment"># Para ver o Zen completo:</span>
+<span class="hljs-keyword">import</span> this
+</div></code></pre>
+<h3 id="12-por-que-usar-python">1.2 Por que usar Python?</h3>
+<pre><code class="language-mermaid"><div class="mermaid">mindmap
+  root((Python))
+    Vantagens
+      Sintaxe simples e legível
+      Grande comunidade
+      Multiplataforma
+      Open Source
+    Aplicações
+      Web Development
+      Data Science
+      Machine Learning
+      Automação
+      IoT
+    Ecossistema Rico
+      Bibliotecas extensas
+      Frameworks robustos
+      Ferramentas modernas
+</div></code></pre>
+<h3 id="13-papel-na-ci%C3%AAncia-de-dados">1.3 Papel na Ciência de Dados</h3>
+<p>Python é a linguagem mais popular para Ciência de Dados devido a:</p>
+<ul>
+<li><strong>Ecossistema robusto</strong>: NumPy, Pandas, Scikit-learn, TensorFlow</li>
+<li><strong>Visualização poderosa</strong>: Matplotlib, Seaborn, Plotly</li>
+<li><strong>Notebooks interativos</strong>: Jupyter, Google Colab</li>
+<li><strong>Integração fácil</strong>: APIs, bancos de dados, big data tools</li>
+<li><strong>Comunidade ativa</strong>: tutoriais, bibliotecas, suporte</li>
+</ul>
+<h3 id="14-comparativo-com-outras-linguagens">1.4 Comparativo com Outras Linguagens</h3>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>Python</th>
+<th>R</th>
+<th>Julia</th>
+<th>MATLAB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Curva de aprendizado</td>
+<td>Suave</td>
+<td>Moderada</td>
+<td>Moderada</td>
+<td>Suave</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>Boa (com libs otimizadas)</td>
+<td>Moderada</td>
+<td>Excelente</td>
+<td>Boa</td>
+</tr>
+<tr>
+<td>Comunidade DS</td>
+<td>Muito grande</td>
+<td>Grande</td>
+<td>Crescente</td>
+<td>Média</td>
+</tr>
+<tr>
+<td>Propósito geral</td>
+<td>✅ Sim</td>
+<td>❌ Não</td>
+<td>⚠️ Limitado</td>
+<td>❌ Não</td>
+</tr>
+<tr>
+<td>Custo</td>
+<td>Gratuito</td>
+<td>Gratuito</td>
+<td>Gratuito</td>
+<td>Pago</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="2-arquitetura-interna-do-python">2. Arquitetura Interna do Python</h2>
+<h3 id="21-como-o-interpretador-funciona">2.1 Como o Interpretador Funciona</h3>
+<pre><code class="language-mermaid"><div class="mermaid">flowchart TD
+    A[Código Python .py] --> B[Tokenização]
+    B --> C[Parsing - AST]
+    C --> D[Compilação para Bytecode .pyc]
+    D --> E[Python Virtual Machine PVM]
+    E --> F[Execução]
+
+    style A fill:#e1f5ff
+    style D fill:#fff4e1
+    style F fill:#e7ffe1
+</div></code></pre>
+<h4 id="etapas-de-execu%C3%A7%C3%A3o">Etapas de Execução:</h4>
+<ol>
+<li><strong>Tokenização</strong>: Código fonte é dividido em tokens (palavras-chave, operadores, identificadores)</li>
+<li><strong>Parsing</strong>: Tokens são organizados em uma Árvore Sintática Abstrata (AST)</li>
+<li><strong>Compilação</strong>: AST é transformado em bytecode (.pyc)</li>
+<li><strong>Execução</strong>: PVM (Python Virtual Machine) executa o bytecode</li>
+</ol>
+<h3 id="22-ambiente-virtual-e-isolamento">2.2 Ambiente Virtual e Isolamento</h3>
+<pre><code class="language-mermaid"><div class="mermaid">graph LR
+    A[Sistema] --> B[Python Global]
+    A --> C[Projeto 1<br/>venv1]
+    A --> D[Projeto 2<br/>venv2]
+    A --> E[Projeto 3<br/>conda env]
+
+    C --> F[Django 3.2<br/>requests 2.28]
+    D --> G[Django 4.0<br/>requests 2.31]
+    E --> H[Flask 2.0<br/>pandas 1.5]
+
+    style A fill:#f9f9f9
+    style C fill:#e1f5ff
+    style D fill:#e1f5ff
+    style E fill:#ffe1f5
+</div></code></pre>
+<p><strong>Por que usar ambientes virtuais?</strong></p>
+<ul>
+<li>Isolamento de dependências entre projetos</li>
+<li>Evita conflitos de versões</li>
+<li>Reprodutibilidade do ambiente</li>
+<li>Facilita deployment</li>
+</ul>
+<h3 id="23-gerenciamento-de-mem%C3%B3ria">2.3 Gerenciamento de Memória</h3>
+<pre><code class="language-mermaid"><div class="mermaid">flowchart TD
+    A[Objeto Criado] --> B[Alocação de Memória]
+    B --> C[Reference Counting]
+    C --> D{Ref Count = 0?}
+    D -->|Sim| E[Garbage Collector]
+    D -->|Não| C
+    E --> F[Memória Liberada]
+
+    style E fill:#ffe1e1
+    style F fill:#e7ffe1
+</div></code></pre>
+<p><strong>Principais mecanismos:</strong></p>
+<ul>
+<li><strong>Reference Counting</strong>: Conta quantas referências apontam para um objeto</li>
+<li><strong>Garbage Collector</strong>: Detecta e remove ciclos de referências</li>
+<li><strong>Gerenciamento automático</strong>: Desenvolvedor não precisa alocar/desalocar manualmente</li>
+</ul>
+<hr>
+<h2 id="3-fundamentos-da-linguagem">3. Fundamentos da Linguagem</h2>
+<h3 id="31-sintaxe-b%C3%A1sica">3.1 Sintaxe Básica</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Variáveis e tipos básicos</span>
+nome = <span class="hljs-string">"Python"</span>           <span class="hljs-comment"># str</span>
+versao = <span class="hljs-number">3.12</span>            <span class="hljs-comment"># int</span>
+aprovacao = <span class="hljs-number">95.5</span>         <span class="hljs-comment"># float</span>
+ativo = <span class="hljs-literal">True</span>             <span class="hljs-comment"># bool</span>
+
+<span class="hljs-comment"># Estruturas de dados</span>
+lista = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]
+tupla = (<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+dicionario = {<span class="hljs-string">"chave"</span>: <span class="hljs-string">"valor"</span>}
+conjunto = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>}
+</div></code></pre>
+<h3 id="32-controle-de-fluxo">3.2 Controle de Fluxo</h3>
+<pre><code class="language-mermaid"><div class="mermaid">flowchart TD
+    A[Início] --> B{Condição?}
+    B -->|True| C[Bloco if]
+    B -->|False| D{elif?}
+    D -->|True| E[Bloco elif]
+    D -->|False| F[Bloco else]
+    C --> G[Continua]
+    E --> G
+    F --> G
+
+    G --> H{Loop?}
+    H -->|for/while| I[Itera]
+    I --> J{Condição?}
+    J -->|True| I
+    J -->|False| K[Fim]
+    H -->|Não| K
+</div></code></pre>
+<h3 id="33-fun%C3%A7%C3%B5es-e-m%C3%B3dulos">3.3 Funções e Módulos</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Definição de função</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">processar_dados</span><span class="hljs-params">(dados, filtro=None)</span>:</span>
+    <span class="hljs-string">"""
+    Processa dados com filtro opcional.
+
+    Args:
+        dados: Lista de dados a processar
+        filtro: Função de filtro opcional
+
+    Returns:
+        Dados processados
+    """</span>
+    <span class="hljs-keyword">if</span> filtro:
+        dados = list(filter(filtro, dados))
+    <span class="hljs-keyword">return</span> [d * <span class="hljs-number">2</span> <span class="hljs-keyword">for</span> d <span class="hljs-keyword">in</span> dados]
+
+<span class="hljs-comment"># Importação de módulos</span>
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split
+</div></code></pre>
+<h3 id="34-paradigmas-de-programa%C3%A7%C3%A3o">3.4 Paradigmas de Programação</h3>
+<pre><code class="language-mermaid"><div class="mermaid">mindmap
+  root((Python))
+    Imperativo
+      Sequência de comandos
+      Mudança de estado
+    Orientado a Objetos
+      Classes e objetos
+      Herança e polimorfismo
+      Encapsulamento
+    Funcional
+      Funções puras
+      Imutabilidade
+      map, filter, reduce
+    Procedural
+      Procedimentos e funções
+      Modularização
+</div></code></pre>
+<hr>
+<h2 id="4-ambiente-e-ecossistema">4. Ambiente e Ecossistema</h2>
+<h3 id="41-ferramentas-de-gerenciamento">4.1 Ferramentas de Gerenciamento</h3>
+<pre><code class="language-mermaid"><div class="mermaid">graph TD
+    A[Gerenciamento Python] --> B[pip]
+    A --> C[venv]
+    A --> D[conda]
+
+    B --> B1[Instalar pacotes]
+    B --> B2[requirements.txt]
+
+    C --> C1[Ambiente virtual Python]
+    C --> C2[Leve e rápido]
+
+    D --> D1[Ambientes completos]
+    D --> D2[Gerencia Python + pacotes]
+    D --> D3[Ideal para Data Science]
+
+    style B fill:#e1f5ff
+    style C fill:#ffe1f5
+    style D fill:#e7ffe1
+</div></code></pre>
+<h3 id="42-ambientes-de-desenvolvimento">4.2 Ambientes de Desenvolvimento</h3>
+<table>
+<thead>
+<tr>
+<th>Ferramenta</th>
+<th>Uso</th>
+<th>Vantagens</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Jupyter Notebook</strong></td>
+<td>Análise interativa</td>
+<td>Visualização inline, documentação</td>
+</tr>
+<tr>
+<td><strong>Google Colab</strong></td>
+<td>Prototipagem rápida</td>
+<td>GPU gratuita, colaboração</td>
+</tr>
+<tr>
+<td><strong>VS Code</strong></td>
+<td>Desenvolvimento geral</td>
+<td>Extensões, debugging, Git</td>
+</tr>
+<tr>
+<td><strong>PyCharm</strong></td>
+<td>Projetos grandes</td>
+<td>IDE completa, refactoring</td>
+</tr>
+<tr>
+<td><strong>Spyder</strong></td>
+<td>Análise científica</td>
+<td>Interface tipo MATLAB</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-estrutura-de-projeto">4.3 Estrutura de Projeto</h3>
+<pre class="hljs"><code><div>meu_projeto/
+├── README.md
+├── requirements.txt
+├── .gitignore
+├── setup.py
+├── data/
+│   ├── raw/
+│   └── processed/
+├── notebooks/
+│   └── exploracao.ipynb
+├── src/
+│   ├── __init__.py
+│   ├── data_processing.py
+│   ├── models.py
+│   └── visualization.py
+└── tests/
+    └── test_data_processing.py
+</div></code></pre>
+<hr>
+<h2 id="5-python-para-ci%C3%AAncia-de-dados">5. Python para Ciência de Dados</h2>
+<h3 id="51-stack-essencial">5.1 Stack Essencial</h3>
+<pre><code class="language-mermaid"><div class="mermaid">graph TB
+    A[Python] --> B[NumPy]
+    B --> C[Pandas]
+    C --> D[Scikit-learn]
+
+    A --> E[Matplotlib]
+    E --> F[Seaborn]
+
+    C --> G[Análise Exploratória]
+    D --> H[Machine Learning]
+    F --> I[Visualização]
+
+    style B fill:#FFE5B4
+    style C fill:#B4E5FF
+    style E fill:#FFB4E5
+    style D fill:#B4FFB4
+</div></code></pre>
+<h3 id="52-pipeline-de-an%C3%A1lise-de-dados">5.2 Pipeline de Análise de Dados</h3>
+<pre><code class="language-mermaid"><div class="mermaid">flowchart LR
+    A[1. Coleta] --> B[2. Limpeza]
+    B --> C[3. Exploração]
+    C --> D[4. Modelagem]
+    D --> E[5. Avaliação]
+    E --> F[6. Deploy]
+
+    B -.-> G[(Dados<br/>Limpos)]
+    C -.-> H[Insights]
+    D -.-> I[Modelo]
+
+    style A fill:#ffe1e1
+    style B fill:#ffe7e1
+    style C fill:#ffede1
+    style D fill:#e1f5ff
+    style E fill:#e1ffe7
+    style F fill:#e7ffe1
+</div></code></pre>
+<h4 id="detalhamento-do-pipeline">Detalhamento do Pipeline:</h4>
+<ol>
+<li><strong>Coleta</strong>: APIs, arquivos CSV/JSON, bancos de dados, web scraping</li>
+<li><strong>Limpeza</strong>: Valores faltantes, outliers, normalização, encoding</li>
+<li><strong>Exploração</strong>: Estatísticas descritivas, correlações, visualizações</li>
+<li><strong>Modelagem</strong>: Feature engineering, treino, tuning de hiperparâmetros</li>
+<li><strong>Avaliação</strong>: Métricas, validação cruzada, análise de erros</li>
+<li><strong>Deploy</strong>: API, dashboard, relatórios automatizados</li>
+</ol>
+<h3 id="53-bibliotecas-principais">5.3 Bibliotecas Principais</h3>
+<h4 id="numpy---computa%C3%A7%C3%A3o-num%C3%A9rica">NumPy - Computação Numérica</h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+<span class="hljs-comment"># Arrays multidimensionais</span>
+arr = np.array([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]])
+print(arr.shape)  <span class="hljs-comment"># (2, 3)</span>
+
+<span class="hljs-comment"># Operações vetorizadas</span>
+resultado = arr * <span class="hljs-number">2</span> + <span class="hljs-number">10</span>
+</div></code></pre>
+<h4 id="pandas---manipula%C3%A7%C3%A3o-de-dados">Pandas - Manipulação de Dados</h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+
+<span class="hljs-comment"># DataFrame</span>
+df = pd.DataFrame({
+    <span class="hljs-string">'nome'</span>: [<span class="hljs-string">'Ana'</span>, <span class="hljs-string">'Bruno'</span>, <span class="hljs-string">'Carlos'</span>],
+    <span class="hljs-string">'idade'</span>: [<span class="hljs-number">25</span>, <span class="hljs-number">30</span>, <span class="hljs-number">35</span>],
+    <span class="hljs-string">'salario'</span>: [<span class="hljs-number">3000</span>, <span class="hljs-number">4000</span>, <span class="hljs-number">5000</span>]
+})
+
+<span class="hljs-comment"># Operações</span>
+media_idade = df[<span class="hljs-string">'idade'</span>].mean()
+filtrado = df[df[<span class="hljs-string">'salario'</span>] &gt; <span class="hljs-number">3500</span>]
+</div></code></pre>
+<h4 id="matplotlib---visualiza%C3%A7%C3%A3o">Matplotlib - Visualização</h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+
+<span class="hljs-comment"># Gráfico simples</span>
+plt.plot([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">9</span>, <span class="hljs-number">16</span>])
+plt.xlabel(<span class="hljs-string">'X'</span>)
+plt.ylabel(<span class="hljs-string">'Y'</span>)
+plt.title(<span class="hljs-string">'Meu Gráfico'</span>)
+plt.show()
+</div></code></pre>
+<h3 id="54-projeto-demonstrativo-dataset-titanic">5.4 Projeto Demonstrativo: Dataset Titanic</h3>
+<pre><code class="language-mermaid"><div class="mermaid">flowchart TD
+    A[Carregar dados Titanic] --> B[Análise inicial]
+    B --> C{Dados faltantes?}
+    C -->|Sim| D[Tratar missing values]
+    C -->|Não| E[Feature Engineering]
+    D --> E
+    E --> F[Visualizações exploratórias]
+    F --> G[Treinar modelo ML]
+    G --> H[Avaliar performance]
+    H --> I{Satisfatório?}
+    I -->|Não| E
+    I -->|Sim| J[Conclusões e insights]
+
+    style A fill:#e1f5ff
+    style G fill:#ffe1f5
+    style J fill:#e7ffe1
+</div></code></pre>
+<p><strong>Objetivos do projeto:</strong></p>
+<ul>
+<li>Prever sobrevivência de passageiros</li>
+<li>Identificar fatores de risco</li>
+<li>Demonstrar pipeline completo</li>
+<li>Boas práticas de documentação</li>
+</ul>
+<hr>
+<h2 id="6-encerramento-e-pr%C3%B3ximos-passos">6. Encerramento e Próximos Passos</h2>
+<h3 id="61-recursos-de-aprendizado">6.1 Recursos de Aprendizado</h3>
+<pre><code class="language-mermaid"><div class="mermaid">mindmap
+  root((Aprender<br/>Python))
+    Cursos Online
+      Coursera
+      DataCamp
+      Udemy
+      freeCodeCamp
+    Livros
+      Python Crash Course
+      Automate the Boring Stuff
+      Python Data Science Handbook
+    Comunidades
+      Stack Overflow
+      Reddit r/learnpython
+      Discord Python
+      GitHub
+    Prática
+      Kaggle
+      LeetCode
+      Project Euler
+      Exercism
+</div></code></pre>
+<h3 id="62-roadmap-de-carreira-em-data-science">6.2 Roadmap de Carreira em Data Science</h3>
+<pre><code class="language-mermaid"><div class="mermaid">timeline
+    title Jornada em Data Science
+    section Fundamentos
+        Mês 1-2 : Python básico
+               : SQL
+               : Git
+    section Análise
+        Mês 3-4 : Pandas
+               : NumPy
+               : Visualização
+    section Estatística
+        Mês 5-6 : Probabilidade
+               : Testes de hipótese
+               : Regressão
+    section Machine Learning
+        Mês 7-9 : Scikit-learn
+               : Algoritmos ML
+               : Feature Engineering
+    section Avançado
+        Mês 10-12 : Deep Learning
+                 : Big Data
+                 : MLOps
+</div></code></pre>
+<h3 id="63-dicas-de-carreira">6.3 Dicas de Carreira</h3>
+<ol>
+<li><strong>Construa um portfólio</strong>: Projetos no GitHub, Kaggle, blog técnico</li>
+<li><strong>Contribua com open source</strong>: Aprenda com código real</li>
+<li><strong>Networking</strong>: Participe de meetups, conferências, comunidades</li>
+<li><strong>Mantenha-se atualizado</strong>: Papers, blogs, podcasts</li>
+<li><strong>Pratique comunicação</strong>: Explicar insights é tão importante quanto encontrá-los</li>
+</ol>
+<h3 id="64-atividade-final">6.4 Atividade Final</h3>
+<p><strong>Notebook de Exploração de Dados - Dataset Titanic</strong></p>
+<p>Tarefas:</p>
+<ul>
+<li><input type="checkbox" id="checkbox0"><label for="checkbox0">Carregar o dataset do Titanic</label></li>
+<li><input type="checkbox" id="checkbox1"><label for="checkbox1">Realizar análise exploratória de dados (EDA)</label></li>
+<li><input type="checkbox" id="checkbox2"><label for="checkbox2">Criar pelo menos 3 visualizações diferentes</label></li>
+<li><input type="checkbox" id="checkbox3"><label for="checkbox3">Identificar padrões e correlações</label></li>
+<li><input type="checkbox" id="checkbox4"><label for="checkbox4">Tratar dados faltantes</label></li>
+<li><input type="checkbox" id="checkbox5"><label for="checkbox5">Criar features novas</label></li>
+<li><input type="checkbox" id="checkbox6"><label for="checkbox6">Treinar modelo de classificação simples</label></li>
+<li><input type="checkbox" id="checkbox7"><label for="checkbox7">Documentar insights e conclusões</label></li>
+</ul>
+<p><strong>Critérios de avaliação:</strong></p>
+<ul>
+<li>Qualidade do código (legibilidade, organização)</li>
+<li>Profundidade da análise</li>
+<li>Visualizações informativas</li>
+<li>Insights relevantes</li>
+<li>Documentação clara</li>
+</ul>
+<hr>
+<h2 id="%F0%9F%93%9A-refer%C3%AAncias-e-links-%C3%BAteis">📚 Referências e Links Úteis</h2>
+<ul>
+<li><a href="https://docs.python.org/3/">Documentação Oficial Python</a></li>
+<li><a href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a></li>
+<li><a href="https://www.kaggle.com/learn">Kaggle Learn</a></li>
+<li><a href="https://realpython.com/">Real Python Tutorials</a></li>
+<li><a href="https://towardsdatascience.com/">Towards Data Science</a></li>
+</ul>
+<hr>
+<h2 id="%F0%9F%92%A1-cita%C3%A7%C3%B5es-inspiradoras">💡 Citações Inspiradoras</h2>
+<blockquote>
+<p>&quot;A simplicidade é o mais alto grau de sofisticação.&quot; - Leonardo da Vinci</p>
+</blockquote>
+<blockquote>
+<p>&quot;Dados são o novo petróleo, mas apenas se refinados.&quot; - Clive Humby</p>
+</blockquote>
+<blockquote>
+<p>&quot;O Python é poderoso... e rápido; brinca bem com os outros; roda em todo lugar; é amigável e fácil de aprender.&quot; - Python.org</p>
+</blockquote>
+<hr>
+<p><strong>Última atualização</strong>: 2025-10-17
+<strong>Próxima aula</strong>: Manipulação Avançada de Dados com Pandas</p>
+
+</body>
+</html>

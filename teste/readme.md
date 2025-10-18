@@ -1,0 +1,1 @@
+eu quero um sistema para cruzar notas fiscais emitidas com meu "contas a receber";
